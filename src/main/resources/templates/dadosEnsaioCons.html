@@ -1,0 +1,115 @@
+<html  xmlns:th="http://www.thymeleaf.org"
+  th:include="layout :: page">
+  <head>
+  		<title>Dados Ensaio</title> 
+   </head>
+   
+<body>
+ <section th:fragment="content">
+ 	 <script th:inline="javascript">
+	/*<![CDATA[*/
+			$(document).ready(function(){
+			    $('#dataInicio').datepicker({
+				      autoclose: true,
+				      locale:  'en',
+			    	  useCurrent: false
+				    });
+			    $("#dataInicio").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"}   );
+
+			    $('#dataFinal').datepicker({
+				      autoclose: true,
+				      locale:  'en',
+			    	  useCurrent: false
+				    });
+			    $("#dataFinal").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"}   );
+				     
+			    $('#tabela').DataTable({
+			      "paging": true,
+			      "lengthChange": false,
+			      "searching": false,
+			      "ordering": true,
+			      "info": true,
+			      "autoWidth": false,
+			      "language": { 
+			            "zeroRecords": "Nenhum ensaio encontrados",
+			            "info": "Pagina _PAGE_ de _PAGES_",
+			            "infoEmpty": "Nenhum Ensaio Encontrado",
+			            "infoFiltered": "(Filtrado _MAX_ de total registros)",
+			            "paginate": {
+			                "previous": "Pagina Anterior",
+			                 "next": "Pr&oacute;xima"
+			              }
+			        }
+			    });
+		  });
+		
+	/*]]>*/
+	</script> 
+<div style="padding-left: 20px;" >
+	<h1>Dados do Ensaio</h1>
+ 
+ 
+				<form action="#" th:action="@{/dadosEnsaio/}" th:object="${filtroEnsaio}"  modelAttribute="filtroEnsaio" method="post" >
+					<div class="row linhaForm" >
+					
+						<div class="col-sm-2"   >
+						  <label for="numeroOS">Ordem de Sevi&ccedilo</label>
+					      <input type="text" size="2" class="form-control" id="numeroOS"  th:field="*{numeroOS}"   ></input>
+						</div>
+						<div class="col-sm-3"  >
+						  <label for="cliente">Cliente</label>
+					      <input type="text" size="3" class="form-control" id="cliente"  th:field="*{cliente}"  ></input>
+						</div>
+				 
+								<div class="col-sm-2"  >
+							  		<label for="dataInicio">Periodo Inicio</label> 
+						       		<input type="text" size="3" class="form-control pull-right date campoData" id="dataInicio"  th:field="*{dataInicio}"></input>
+						        </div>
+						         
+						        <div class="col-sm-2"  >
+							  	  <label for="dataFinal">Periodo Fim</label> 
+						     	  <input type="text" size="3" class="form-control pull-right date campoData" id="dataFinal"  th:field="*{dataFinal}"  ></input>
+						       </div>
+					    
+						        <div class="col-sm-1"  >
+						  		    <label for="consultar" style="opacity: 0">consultar</label> 
+									<input type="submit" class="btn btn-sm btn-primary "  value="Consultar"> </input>
+								</div>
+						</div>
+						
+						 
+					</div>
+				</form>
+ 
+	 <a th:href="@{/dadosEnsaio/novo}"   class="btn btn-xs btn-success" >  <span class="glyphicon glyphicon glyphicon-plus" ></span>  Novo</a>
+
+	<div class="row" style="width: 98%">
+	<table id="tabela" class="table table-bordered table-hover">
+		<thead>
+			<th>Ordem de Servi&ccedil;o</th>
+			<th>Data do Ensaio</th>
+			<th>Cliente/Empresa</th> 
+			<th>Item</th>
+			<th>C&oacute;digo</th>
+			<th>A&ccedil;&atilde;o</th> 
+		</thead>
+		<tbody>
+			<tr  th:each="ensaioItem : ${ensaios}" >
+				<td  th:text="${ensaioItem.ordemDeServico}"> </td>
+				<td  th:text="${#dates.format(ensaioItem.dataDoEnsaio, 'dd/MM/yyyy')}"> </td>
+				<td  th:text="${ensaioItem.clienteEmpresa}"> </td> 
+				<td  th:text="${ensaioItem.item}"> </td>
+				<td  th:text="${ensaioItem.codigo}"> </td>
+				<td> <a th:href="@{/dadosEnsaio/__${ensaioItem.id}__}" class="btn btn-xs btn-primary">
+      					  <span class="glyphicon glyphicon glyphicon-pencil" ></span> Editar
+    				 </a>
+			 
+		         </td> 
+			</tr>
+		</tbody>
+	</table> 
+	</div>
+</div>
+ </section>
+</body>
+</html>

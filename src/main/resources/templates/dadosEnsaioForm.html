@@ -1,0 +1,171 @@
+<html  xmlns:th="http://www.thymeleaf.org"
+  th:include="layout :: page">
+  <head>
+  		<title>Dados Ensaio</title> 
+   </head>
+   
+<body>
+ <section th:fragment="content">
+ 
+	 <script th:inline="javascript">
+	/*<![CDATA[*/
+		 $(document).on("input", ".numeric", function() {
+		    this.value = this.value.replace(/[^\d\.\-]/g,'');
+		});
+
+			$(document).ready(function(){ 
+			    //Datemask dd/mm/yyyy 
+			    //Date picker
+			    $('#dataDoEnsaio').datepicker({
+			      autoclose: true,
+			      locale:  'pt',
+		    	  useCurrent: false
+			    });
+			    $("#dataDoEnsaio").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"}   );
+			     
+			 });
+
+			function excluir(){
+				var id = $(':hidden#id').val()
+				
+				 $.ajax({
+			            type: "DELETE",	
+			            url: "/webscan/dadosEnsaio/delete/" + id 
+					 
+				 });
+			} 
+
+	/*]]>*/
+	</script>
+	<form action="#" th:action="@{/dadosEnsaio/gravar}" th:object="${ensaio}"  modelAttribute="ensaio" method="post">
+	<div class="row">
+		<div class="col-sm-3">
+			<div class="form-group">
+					<input type="hidden" id="id" name="id" th:field="*{id}">
+				 
+					<fieldset class="scheduler-border">
+						<legend class="scheduler-border">Configura&ccedil&otildees</legend> 
+											
+						<div class="row "> 
+							<div class="col-sm-4"> 
+						      <label for="avanco">Avan&ccedilo</label>
+						      <input type="text" size="1" class="form-control numeric" id="avanco" th:field="*{avanco}"  maxlength="4"   th:classappend="${#fields.hasErrors('ordemDeServico')} ?: 'ordemDeServico'" ></input>
+					   	 	</div>		
+					   	</div>
+						<div class="row "> 
+							<div class="col-sm-6" > 
+						      <label for="comprimento">Comprimento M&aacuteximo (cm)</label>
+						      <input type="text" size="1" class="form-control numeric" id="comprimentoMaximo" th:field="*{comprimentoMaximo}" maxlength="4"  th:classappend="${#fields.hasErrors('ordemDeServico')} ?: 'ordemDeServico'" ></input>
+					      	</div>
+					     </div>
+					     
+					     
+						 <fieldset class="scheduler-border">
+							<legend class="scheduler-border">Ensaios</legend>
+							<div style="padding-left: 5px;">
+								<div class="row"> 
+									<div class="checkbox">
+										<label><input type="checkbox"  id="espesura" th:field="*{espesura}"  ></input>Medi&ccedil&atildeo Espessura</label>
+									</div>
+								</div>
+								<div class="row"> 
+									<div class="checkbox">
+										<label><input type="checkbox" id="longitudinal"  th:field="*{longitudinal}"  ></input>Longitudinal</label>
+									</div>
+								</div>
+								<div class="row"> 
+									<div class="checkbox">
+										<label><input type="checkbox" id="transversal" th:field="*{transversal}"></input>Transversal</label>
+									</div>
+								</div> 
+							</div>
+						</fieldset>
+					</fieldset>
+				 
+			</div>
+
+		</div>
+		<div class="col-sm-8" >
+
+		 
+				<fieldset class="scheduler-border">
+					<legend class="scheduler-border">Dados Gerais</legend>
+
+					<div class="row linhaForm" >
+						<div class="col-sm-3" th:classappend="${#fields.hasErrors('ordemDeServico')}? 'has-error'"  >
+						  <label for="os">Ordem de Sevi&ccedilo</label>
+					      <input type="text" size="3" class="form-control" id="ordemDeServico"  th:field="*{ordemDeServico}"  th:classappend="${#fields.hasErrors('ordemDeServico')} ?: 'ordemDeServico'"  ></input>
+						</div>
+						<div class="col-sm-2" th:classappend="${#fields.hasErrors('dataDoEnsaio')}? 'has-error'" >
+						  <label for="email">Data do Ensaio</label> 
+					       <input type="text" size="5" class="form-control pull-right date" id="dataDoEnsaio"  th:field="*{dataDoEnsaio}" th:errorclass="fieldError"  th:classappend="${#fields.hasErrors('dataDoEnsaio')} ?: 'dataDoEnsaio'" ></input>
+						</div>
+					</div>
+					<div class="row linhaForm"   th:classappend="${#fields.hasErrors('item')}? 'has-error'"  >
+						<div class="col-sm-5">
+						  <label for="os">&Iacutetem</label>
+					      <input type="text"  class="form-control" id="item"  th:field="*{item}" th:errorclass="fieldError"  th:classappend="${#fields.hasErrors('item')} ?: 'has-error'"  ></input>
+						</div> 
+					</div>
+					<div class="row linhaForm" >
+						<div class="col-sm-5"  th:classappend="${#fields.hasErrors('codigo')}? 'has-error'" >
+						  <label for="os">C&oacutedigo</label>
+					      <input type="text"   class="form-control" id="codigo" th:field="*{codigo}"  th:classappend="${#fields.hasErrors('codigo')} ?: 'has-error'"   ></input>
+						</div> 
+					</div>
+					<div class="row linhaForm" >
+						<div class="col-sm-5"  th:classappend="${#fields.hasErrors('clienteEmpresa')}? 'has-error'">
+						  <label for="os">Cliente/Empresa</label>
+					      <input type="text"    class="form-control " id="clienteEmpresa"  th:field="*{clienteEmpresa}"  th:classappend="${#fields.hasErrors('clienteEmpresa')} ?: 'has-error'" ></input>
+					       
+						</div> 
+					</div>
+				</fieldset> 
+				<br/>
+				<div class="text-danger">
+					<ul>
+					  <li th:each="err : ${#fields.errors('*')}" th:text="${err}" />
+					</ul>
+				</div>
+				<div th:if="${mensagem}"> 
+				  	<div class="alert alert-success" role="alert" th:text="${mensagem}">...</div>
+				</div>
+				<a th:href="@{/dadosEnsaio/novo}"  type="button" class="btn  btn-default"   >Novo</a>
+				<button type="submit" class="btn  btn-primary"   >Salvar</button>
+				<button type="button" class="btn  btn-danger"  id="btnExcluir"  data-toggle="modal" data-target="#myModal"  >Excluir</button>
+				
+				<a  th:href="@{/ensaio/__*{id}__}"   type="button" class="btn  btn-warning"   >Carregar</a>
+				 
+			 
+
+		</div>
+	</div>
+  </form>
+  
+  
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Excluir</h4>
+        </div>
+        <div class="modal-body">
+          <p>Deseja realmente Excluir o Ensaio</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" onclick="excluir();" data-dismiss="modal">Excluir</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+  
+ </section>
+</body>
+</html>

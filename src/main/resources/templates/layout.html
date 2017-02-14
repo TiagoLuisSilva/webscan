@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" th:fragment="page">
+<head>
+  <meta charset="utf-8"></meta>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+  <title>Web Scan</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"></meta>
+  <!-- Bootstrap 3.3.6 -->
+  <link rel="stylesheet"  href="/bootstrap/css/bootstrap.min.css" th:href="@{/bootstrap/css/bootstrap.min.css}"></link>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css}"></link>
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css}"></link>
+  <!-- DataTables -->
+  <link rel="stylesheet" href="/plugins/datatables/dataTables.bootstrap.css" th:href="@{/plugins/datatables/dataTables.bootstrap.css}"></link> 
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/dist/css/AdminLTE.min.css"  th:href="@{/dist/css/AdminLTE.min.css}"></link>
+  
+  <link rel="stylesheet" href="/plugins/datepicker/datepicker3.css" th:href="@{/plugins/datepicker/datepicker3.css}"></link>
+ 
+ 
+  <link rel="stylesheet" href="/dist/css/skins/_all-skins.min.css"  th:href="@{/dist/css/skins/_all-skins.min.css}"></link>
+<!-- jQuery 2.2.3 -->
+<script type="text/javascript" src="/plugins/jQuery/jquery-2.2.3.min.js" th:src="@{/plugins/jQuery/jquery-2.2.3.min.js}"></script>
+<!-- InputMask -->
+<script src="/plugins/input-mask/jquery.inputmask.js" th:src="@{/plugins/input-mask/jquery.inputmask.js}" ></script>
+
+<!-- Bootstrap 3.3.6 -->
+<script type="text/javascript" src="/bootstrap/js/bootstrap.min.js" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+
+<script type="text/javascript"  src="/plugins/datatables/jquery.dataTables.min.js" th:src="@{/plugins/datatables/jquery.dataTables.min.js}"></script> 
+<script type="text/javascript"  src="/plugins/datatables/dataTables.bootstrap.min.js" th:src="@{/plugins/datatables/dataTables.bootstrap.min.js}" ></script>
+<!-- SlimScroll -->
+<script type="text/javascript"  src="/plugins/slimScroll/jquery.slimscroll.min.js" th:src="@{/plugins/slimScroll/jquery.slimscroll.min.js}" ></script>
+<!-- FastClick -->
+<script type="text/javascript"  src="/plugins/fastclick/fastclick.js" th:src="@{/plugins/fastclick/fastclick.js}" ></script><!-- SlimScroll -->
+<script type="text/javascript" src="/plugins/slimScroll/jquery.slimscroll.min.js" th:src="@{/plugins/slimScroll/jquery.slimscroll.min.js}" ></script> 
+<!-- AdminLTE App -->
+<script type="text/javascript" src="/dist/js/app.min.js" th:src="@{/dist/js/app.min.js}"></script>
+<!-- AdminLTE for demo purposes -->
+<script type="text/javascript" src="/dist/js/demo.js"  th:src="@{/dist/js/demo.js}" ></script>
+
+<!-- REQUIRED JS SCRIPTS -->
+<script  type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
+<script  type="text/javascript" src="https://code.highcharts.com/highcharts-more.js"></script>
+<script  type="text/javascript" src="http://code.highcharts.com/modules/exporting.js"></script>
+<script   type="text/javascript" src="/js/ensaio.js"  th:src="@{/dist/js/demo.js}" ></script> 
+<script   type="text/javascript" src="/js/espessura.js" th:src="@{/js/espessura.js}" ></script> 
+<script   type="text/javascript" src="/js/longitudinal.js" th:src="@{/js/longitudinal.js}"></script> 
+<script   type="text/javascript" src="/js/transversal.js" th:src="@{/js/transversal.js}"></script> 
+
+<script src="/plugins/input-mask/jquery.inputmask.date.extensions.js" th:src="@{/plugins/input-mask/jquery.inputmask.date.extensions.js}"></script>
+<script src="/plugins/input-mask/jquery.inputmask.extensions.js" th:src="@{/plugins/input-mask/jquery.inputmask.extensions.js}" ></script>
+<!-- bootstrap datepicker -->
+<script src="/plugins/datepicker/bootstrap-datepicker.js"  th:src="@{/plugins/datepicker/bootstrap-datepicker.js}" ></script>
+<script src="/plugins/datepicker/locales/bootstrap-datepicker.pt-BR.js"  th:src="@{/plugins/datepicker/locales/bootstrap-datepicker.pt-BR.js}" ></script>
+
+</head>
+<!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+<body class="hold-transition skin-blue layout-top-nav">
+<div class="wrapper">
+
+  <header class="main-header">
+    <nav class="navbar navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="#" class="navbar-brand"><b>Web</b>Scan</a>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+            <i class="fa fa-bars"></i>
+          </button>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li th:classappend="${isEnsaioAtivo} ? active : '' " ><a th:href="@{/ensaio}">Ensaio <span class="sr-only">(current)</span></a></li>
+            <li th:classappend="${isDadosAtivo} ? active : '' "><a th:href="@{/dadosEnsaio}">Dados do Ensaio</a></li>  
+            
+          </ul> 
+        </div> 
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
+  </header>
+  <!-- Full Width Column -->
+  <div class="content-wrapper">
+    <div class="container">   
+	    <!-- Main content -->
+	    <section th:include="this :: content" >
+	
+	     <div >A placeholder for real content.</div>
+	
+	    </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.container -->
+  </div>
+  <!-- /.content-wrapper -->
+ 
+</div>
+<!-- ./wrapper -->
+
+</body>
+</html>

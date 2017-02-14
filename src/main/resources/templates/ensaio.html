@@ -1,0 +1,163 @@
+<html  xmlns:th="http://www.thymeleaf.org"   th:include="layout :: page">
+  <head>
+  		<title>Ensaio</title> 
+ 
+  </head>
+   
+<body>
+ 
+ <section th:fragment="content"  >
+	 <script th:inline="javascript">
+	/*<![CDATA[*/
+		    var exibeEspessura = [[${ensaio.espesura}]];
+
+		    var exibeLongitudinal = [[${ensaio.longitudinal}]];
+
+		    var exibeTransversal = [[${ensaio.transversal}]];
+	 
+
+			$(document).ready(function(){
+
+			    	if (exibeEspessura){ 
+						iniciarEspessura();
+				//		calculaTamanho("#espessura")
+					}
+			    	if (exibeLongitudinal){ 
+						iniciarLongitudinal();
+				//	 	calculaTamanho("#longitudinal")
+			    	}
+			    	if (exibeTransversal){ 
+					    iniciarTransversal();
+			    //    	calculaTamanho("#transversal")
+			    	}
+			    	$(window).trigger('resize');
+				 
+					$("#valorRange").val(0);
+					$('#range').on("change mousemove", function() {
+						var valor = $("#range").val();
+						$("#valorRange").val(valor);
+					});
+
+					$("#desconectar").hide();
+
+					$("#iniciar").hide();
+
+					$("#parar").hide();
+			  });
+			function conectar(){
+				$("#desconectar").show();
+				$("#conectar").hide();
+				$("#iniciar").show();
+			}	
+			function desconectar(){
+				$("#conectar").show();
+				$("#desconectar").hide();  
+				$("#iniciar").hide(); 
+			}
+			function iniciar(){
+				$('#desconectar').attr("disabled", true);
+				$("#parar").show();
+				$("#iniciar").hide();
+		    	if (exibeEspessura){ 
+					requestDataEspessura();
+		    	}
+		    	if (exibeLongitudinal){ 
+					requestDataLongitudinal();
+		    	}
+		    	if (exibeTransversal){ 
+					requestDataTransversal();
+		    	}
+			}
+			function parar(){
+				$('#desconectar').removeAttr( "disabled" );
+				$("#iniciar").show();
+				$("#parar").hide();
+		    	if (exibeEspessura){ 
+				  pararLoopEspessura();
+		    	}
+		    	if (exibeLongitudinal){ 
+				  pararLoopLongitudinal();
+		    	}
+		    	if (exibeTransversal){ 
+				  pararLoopTransversal();
+		    	}
+			} 
+	/*]]>*/
+	</script> 
+	      
+	 <script th:inline="javascript">
+	/*<![CDATA[*/
+		
+	function getRandomInt(min, max) {
+	    return Math.floor(Math.random() * (max - min + 1)) + min;
+	}
+	
+
+ 
+	/*]]>*/
+	</script>
+	<style th:inline="text">
+	.slider{
+	  -webkit-appearance: slider-vertical; /* WebKit */
+	} 
+	/*
+  
+	#espessura {
+ 	  background:url([[@{/dist/img/logo.png}]]) 0% 0% ;
+   } */
+	</style>
+    	
+	<fieldset class="scheduler-border">
+		<legend class="scheduler-border">Ensaio </legend> 			
+		<div class="row blocos">		
+		 	<div  class="col-sm-3">
+		      <label for="pwd">Item</label><br/>
+		      <p  th:text="${ensaio.item}">   </p> 
+		    </div>
+		    
+		 	<div  class="col-sm-2">
+		      <label for="pwd">Codigo</label><br/>
+		     <p  th:text="${ensaio.codigo}">   </p> 
+		    </div>
+		 	<div  class="col-sm-2">
+		      <label for="pwd">Data do Ensaio</label><br/>
+		      <p th:text="${ensaio.dataDoEnsaio} ? ${#dates.format(ensaio.dataDoEnsaio, 'dd/MM/yyyy')}">   </p> 
+		    </div>
+		 	<div  class="col-sm-2">
+		      <label for="pwd">Ordem de Servico	</label><br/>
+		     <p  th:text="${ensaio.ordemDeServico}">   </p> 
+		    </div>
+		 	<div  class="col-sm-2">
+		      <label for="pwd">Cliente / Empresa	</label><br/>
+		      <p  th:text="${ensaio.clienteEmpresa}">   </p> 
+		    </div>			
+		</div>     	 
+    </fieldset>
+		<button type="button" class="btn btn-xs btn-primary" id="conectar" onclick="conectar();" >Conectar</button>
+		<button type="button" class="btn btn-xs btn-danger"  id="desconectar" onclick="desconectar();" >Desconectar</button>
+		<button type="button" class="btn btn-xs btn-success" id="iniciar"  onclick="iniciar(); " >Iniciar Ensaio</button>
+		<button type="button" class="btn btn-xs btn-warning"   id="parar" onclick="parar();">Parar Ensaio</button>
+    <br/> <br/>
+ 	<div id="spreedometro"  >
+		    <div class="col-sm-2 " style="width: 8%; height: 200px; " th:remove="${ensaio.espesura} ? none  : all" >
+   				 <fieldset  class="scheduler-border">
+   		     
+   		           <input id="valorRange" type="text" disabled="true"  size="1" style=" text-align: center;"   ></input>   % 
+		    	</fieldset>
+		          <input id="range" name="range"  type="range" min="0" max="100"  step="1" value="0" class="slider" onchange="alterarLinha();" ></input>
+		    </div>
+		    <div class="col-sm-2 " style="width: 92%;  padding-top: -5px; ">
+   		        <fieldset  class="scheduler-border">
+					<div id="espessura" style="width: 100%;   margin: 0 auto"  th:remove="${ensaio.espesura} ? none  : tag"   th:style="${ensaio.height150}  ? 'height: 150px;' : (${ensaio.height225} ? 'height: 225px;' :  'height: 450px;')"  ></div> 
+					<div id="longitudinal" style="min-width: 100%;    margin: 0 auto"  th:remove="${ensaio.longitudinal} ? none : tag"  th:style="${ensaio.height150}  ? 'height: 150px;' : (${ensaio.height225} ? 'height: 225px;' :  'height: 450px;')"  ></div>
+					<div id="transversal" style="min-width: 100%;   margin: 0 auto" th:remove="${ensaio.transversal} ? none : tag"  th:style="${ensaio.height150}  ? 'height: 150px;' : (${ensaio.height225} ? 'height: 225px;' :  'height: 450px;')"  ></div>
+		        </fieldset>
+		    </div>
+	  
+	</div>
+ 
+    
+  </section>
+
+</body>
+</html>
