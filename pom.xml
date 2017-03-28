@@ -99,12 +99,18 @@
 			<artifactId>jasperreports</artifactId>
 			<version>6.2.1</version>
 		</dependency> 
-		
+		 
 		  <dependency>
 		    <groupId>mysql</groupId>
 		    <artifactId>mysql-connector-java</artifactId>
-		  </dependency>
-		  
+		  </dependency>  
+
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.4-1206-jdbc42</version>
+		</dependency>
+		
 		  <dependency>
                 <groupId>xml-apis</groupId>
                 <artifactId>xml-apis</artifactId>
