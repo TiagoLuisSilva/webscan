@@ -22303,3 +22303,67 @@ java.nio.file.NoSuchFileException: D:\Java\projetos\react\ScanWeb\scanweb\target
 2017-03-27 22:31:14.687  INFO 16268 --- [http-nio-9090-exec-1] o.a.c.c.C.[.[localhost].[/webscan]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
 2017-03-27 22:31:14.688  INFO 16268 --- [http-nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
 2017-03-27 22:31:14.715  INFO 16268 --- [http-nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 27 ms
+2017-03-27 23:29:00.745  INFO 7708 --- [main] br.com.tls.WebScanApplication            : Starting WebScanApplication on Tiago-Ultra with PID 7708 (D:\Java\projetos\react\ScanWeb\scanweb\target\classes started by Tiago in D:\Java\projetos\react\ScanWeb\scanweb)
+2017-03-27 23:29:00.752  INFO 7708 --- [main] br.com.tls.WebScanApplication            : No active profile set, falling back to default profiles: default
+2017-03-27 23:29:01.498  INFO 7708 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@31ea9581: startup date [Mon Mar 27 23:29:01 BRT 2017]; root of context hierarchy
+2017-03-27 23:29:04.658  INFO 7708 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-03-27 23:29:04.920  INFO 7708 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration' of type [class org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-03-27 23:29:05.094  INFO 7708 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'validator' of type [class org.springframework.validation.beanvalidation.LocalValidatorFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-03-27 23:29:05.176  INFO 7708 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [class org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$86fa8117] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-03-27 23:29:06.475  INFO 7708 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 9090 (http)
+2017-03-27 23:29:06.521  INFO 7708 --- [main] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2017-03-27 23:29:06.534  INFO 7708 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.11
+2017-03-27 23:29:07.513  INFO 7708 --- [localhost-startStop-1] o.a.c.c.C.[.[localhost].[/webscan]       : Initializing Spring embedded WebApplicationContext
+2017-03-27 23:29:07.513  INFO 7708 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 6020 ms
+2017-03-27 23:29:07.837  INFO 7708 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2017-03-27 23:29:07.844  INFO 7708 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'errorPageFilter' to: [/*]
+2017-03-27 23:29:07.844  INFO 7708 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2017-03-27 23:29:07.845  INFO 7708 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2017-03-27 23:29:07.845  INFO 7708 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2017-03-27 23:29:07.845  INFO 7708 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2017-03-27 23:29:09.817  INFO 7708 --- [main] hsqldb.db.HSQLDB5B12BEDBF3.ENGINE        : Checkpoint start
+2017-03-27 23:29:09.818  INFO 7708 --- [main] hsqldb.db.HSQLDB5B12BEDBF3.ENGINE        : checkpointClose start
+2017-03-27 23:29:09.839  INFO 7708 --- [main] hsqldb.db.HSQLDB5B12BEDBF3.ENGINE        : checkpointClose synched
+2017-03-27 23:29:09.903  INFO 7708 --- [main] hsqldb.db.HSQLDB5B12BEDBF3.ENGINE        : checkpointClose script done
+2017-03-27 23:29:10.046  INFO 7708 --- [main] hsqldb.db.HSQLDB5B12BEDBF3.ENGINE        : checkpointClose end
+2017-03-27 23:29:10.048  INFO 7708 --- [main] hsqldb.db.HSQLDB5B12BEDBF3.ENGINE        : Checkpoint end - txts: 1
+2017-03-27 23:29:10.329  INFO 7708 --- [main] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2017-03-27 23:29:10.415  INFO 7708 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2017-03-27 23:29:10.830  INFO 7708 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.0.11.Final}
+2017-03-27 23:29:10.832  INFO 7708 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2017-03-27 23:29:10.834  INFO 7708 --- [main] org.hibernate.cfg.Environment            : HHH000021: Bytecode provider name : javassist
+2017-03-27 23:29:11.019  INFO 7708 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2017-03-27 23:29:11.772  INFO 7708 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.HSQLDialect
+2017-03-27 23:29:13.229  INFO 7708 --- [main] org.hibernate.tool.hbm2ddl.SchemaUpdate  : HHH000228: Running hbm2ddl schema update
+2017-03-27 23:29:13.262  INFO 7708 --- [main] rmationExtractorJdbcDatabaseMetaDataImpl : HHH000262: Table not found: dadosensaio
+2017-03-27 23:29:13.266  INFO 7708 --- [main] rmationExtractorJdbcDatabaseMetaDataImpl : HHH000262: Table not found: dadosensaio
+2017-03-27 23:29:13.288  INFO 7708 --- [main] rmationExtractorJdbcDatabaseMetaDataImpl : HHH000262: Table not found: ensaio
+2017-03-27 23:29:13.292  INFO 7708 --- [main] rmationExtractorJdbcDatabaseMetaDataImpl : HHH000262: Table not found: ensaio
+2017-03-27 23:29:13.466  INFO 7708 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2017-03-27 23:29:15.466  INFO 7708 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@31ea9581: startup date [Mon Mar 27 23:29:01 BRT 2017]; root of context hierarchy
+2017-03-27 23:29:15.728  INFO 7708 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/dadosEnsaio/delete/{idEnsaio}],methods=[DELETE]}" onto public java.lang.String br.com.tls.webscan.controler.DadosEnsaioControler.delete(org.springframework.ui.ModelMap,java.lang.Long)
+2017-03-27 23:29:15.731  INFO 7708 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/dadosEnsaio],methods=[POST]}" onto public java.lang.String br.com.tls.webscan.controler.DadosEnsaioControler.filtrar(br.com.tls.webscan.dto.FiltroEnsaios,org.springframework.validation.BindingResult,org.springframework.ui.ModelMap)
+2017-03-27 23:29:15.733  INFO 7708 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/dadosEnsaio/gravar],methods=[POST]}" onto public java.lang.String br.com.tls.webscan.controler.DadosEnsaioControler.gravar(br.com.tls.webscan.dto.EnsaioDTO,org.springframework.validation.BindingResult,org.springframework.ui.ModelMap)
+2017-03-27 23:29:15.734  INFO 7708 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/dadosEnsaio/novo],methods=[GET]}" onto public java.lang.String br.com.tls.webscan.controler.DadosEnsaioControler.novo(org.springframework.ui.ModelMap)
+2017-03-27 23:29:15.737  INFO 7708 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/dadosEnsaio/{idEnsaio}],methods=[GET]}" onto public java.lang.String br.com.tls.webscan.controler.DadosEnsaioControler.editar(org.springframework.ui.ModelMap,java.lang.Long)
+2017-03-27 23:29:15.738  INFO 7708 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/dadosEnsaio],methods=[GET]}" onto public java.lang.String br.com.tls.webscan.controler.DadosEnsaioControler.iniciar(java.util.Map<java.lang.String, java.lang.Object>)
+2017-03-27 23:29:15.743  INFO 7708 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/ensaio/download],methods=[GET]}" onto public org.springframework.http.HttpEntity<byte[]> br.com.tls.webscan.controler.EnsaioControler.gerarRelatorioRelatorio() throws java.lang.Exception
+2017-03-27 23:29:15.746  INFO 7708 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/ensaio/gravar],methods=[POST],consumes=[application/json]}" onto public java.lang.String br.com.tls.webscan.controler.EnsaioControler.gravar(br.com.tls.webscan.dto.DadosEnsaioGravar)
+2017-03-27 23:29:15.747  INFO 7708 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/ensaio/download],methods=[POST]}" onto public java.lang.String br.com.tls.webscan.controler.EnsaioControler.gerarRelatorio(br.com.tls.webscan.dto.RelatorioEnsaioDTO) throws java.lang.Exception
+2017-03-27 23:29:15.747  INFO 7708 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/ensaio],methods=[GET]}" onto public java.lang.String br.com.tls.webscan.controler.EnsaioControler.welcome(org.springframework.ui.ModelMap)
+2017-03-27 23:29:15.748  INFO 7708 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/ensaio/limparDados],methods=[POST],consumes=[application/json]}" onto public java.lang.String br.com.tls.webscan.controler.EnsaioControler.limparDados(br.com.tls.webscan.dto.DadosEnsaioGravar)
+2017-03-27 23:29:15.748  INFO 7708 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/ensaio/{idEnsaio}],methods=[GET]}" onto public java.lang.String br.com.tls.webscan.controler.EnsaioControler.carregar(org.springframework.ui.ModelMap,java.lang.Long)
+2017-03-27 23:29:15.751  INFO 7708 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/]}" onto public java.lang.String br.com.tls.webscan.controler.IndexControler.welcome(java.util.Map<java.lang.String, java.lang.Object>)
+2017-03-27 23:29:15.756  INFO 7708 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-03-27 23:29:15.758  INFO 7708 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-03-27 23:29:15.873  INFO 7708 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-03-27 23:29:15.873  INFO 7708 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-03-27 23:29:16.107  INFO 7708 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-03-27 23:29:18.605  INFO 7708 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2017-03-27 23:29:18.924  INFO 7708 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 9090 (http)
+2017-03-27 23:29:18.986  INFO 7708 --- [main] br.com.tls.WebScanApplication            : Started WebScanApplication in 18.87 seconds (JVM running for 19.851)
+2017-03-27 23:29:32.776  INFO 7708 --- [http-nio-9090-exec-1] o.a.c.c.C.[.[localhost].[/webscan]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2017-03-27 23:29:32.776  INFO 7708 --- [http-nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2017-03-27 23:29:33.552  INFO 7708 --- [http-nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 775 ms
