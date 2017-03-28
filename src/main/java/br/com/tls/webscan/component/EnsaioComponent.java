@@ -129,7 +129,9 @@ public class EnsaioComponent   {
 	     rel.setOrdemDeServico(ensaio.getOrdemDeServico());
 	     rel.setItem(ensaio.getItem());
 	     rel.setClienteEmpresa(ensaio.getClienteEmpresa());
-		 String  url = EnsaioComponent.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+		// String  url = EnsaioComponent.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+		 String  url = "\\var\\";
+		 
 		 ParametrosRelVO parametros = new ParametrosRelVO();
 		 parametros.setDiretorioRel(url+"relatorio");
 	     rel.setUrlLogo(parametros.getDiretorioRel()+"/logo.png");

@@ -76,7 +76,9 @@ public class EnsaioControler {
 
 	@RequestMapping(value="/ensaio/download",  method=RequestMethod.POST)
 	public @ResponseBody String    gerarRelatorio(  @RequestBody  RelatorioEnsaioDTO ensaioRelatorio) throws Exception {
-		String path = RelatorioEnsaioDTO.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+		//String path = RelatorioEnsaioDTO.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+		String path = "\\var\\";
+		
 		try {
 		 	File svgEspessura=new File(path+"relatorio\\espessura.svg");
 		 	File svgTransversal=new File(path+"relatorio\\transversal.svg");
