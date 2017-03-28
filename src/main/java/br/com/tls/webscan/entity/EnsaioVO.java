@@ -1,12 +1,18 @@
 package br.com.tls.webscan.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -37,15 +43,30 @@ public class EnsaioVO {
 
 	@Column
 	private Double comprimentoMaximo;
+	
 
+	@Column 
+	private Long margemEspesura;
+	
 	@Column
 	private Boolean espesura;
+	
 	@Column
 	private Boolean longitudinal;
+	
+	@Column 
+	private Long margemLongitudinal;
+	
 	@Column
 	private Boolean transversal;
-	@Column
-	private Boolean grau;
+	
+	@Column 
+	private Long margemTransversal; 
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "ensaio", fetch = FetchType.LAZY)
+	@OrderBy("tipo, valorX")
+    private List<DadosEnsaioVO> dadosEnsaio; 
+	
 	
 	public Long getId() {
 		return id;
@@ -113,11 +134,30 @@ public class EnsaioVO {
 	public void setTransversal(Boolean transversal) {
 		this.transversal = transversal;
 	}
-	public Boolean getGrau() {
-		return grau;
+	public Long getMargemEspesura() {
+		return margemEspesura;
 	}
-	public void setGrau(Boolean grau) {
-		this.grau = grau;
+	public void setMargemEspesura(Long margemEspesura) {
+		this.margemEspesura = margemEspesura;
 	}
+	public Long getMargemLongitudinal() {
+		return margemLongitudinal;
+	}
+	public void setMargemLongitudinal(Long margemLongitudinal) {
+		this.margemLongitudinal = margemLongitudinal;
+	}
+	public Long getMargemTransversal() {
+		return margemTransversal;
+	}
+	public void setMargemTransversal(Long margemTransversal) {
+		this.margemTransversal = margemTransversal;
+	}
+	public List<DadosEnsaioVO> getDadosEnsaio() {
  
+		return dadosEnsaio;
+	}
+	public void setDadosEnsaio(List<DadosEnsaioVO> dadosEnsaio) {
+		this.dadosEnsaio = dadosEnsaio;
+	}
+  
 }

@@ -1,5 +1,6 @@
 	package br.com.tls.webscan.controler;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -15,12 +16,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
 
 import br.com.tls.webscan.component.EnsaioComponent;
 import br.com.tls.webscan.dto.EnsaioDTO;
 import br.com.tls.webscan.dto.FiltroEnsaios;
+import br.com.tls.webscan.entity.DadosEnsaioVO;
 import br.com.tls.webscan.entity.EnsaioVO;
 
 @Controller
@@ -89,7 +89,17 @@ public class DadosEnsaioControler {
 		if (bindingResult.hasErrors()){
 			return "dadosEnsaioForm";
 		}
-		EnsaioVO ensaioVO =	ensaioComponent.persistir(ensaio.toEnsaioVO());
+
+		EnsaioVO ensaioVO =	 ensaio.toEnsaioVO();
+		List<DadosEnsaioVO> listaDadosDoEnsaio = ensaioComponent.consultarDados(ensaio.getId());
+		if  (listaDadosDoEnsaio ==null || listaDadosDoEnsaio.isEmpty()){ 
+			
+			ensaioVO.setDadosEnsaio(new ArrayList<DadosEnsaioVO>()); 
+		} else {
+			ensaioVO.setDadosEnsaio(listaDadosDoEnsaio);
+		}
+
+	    ensaioComponent.persistir(ensaioVO);
 		
 		model.put("mensagem", "Ensaio gravado com sucesso");
 		model.put("ensaio", new EnsaioDTO(ensaioVO));

@@ -1,8 +1,10 @@
 
 var chartEspessura = null;
 var loopEspessura = null;
-function iniciarEspessura()  { 	
-
+var comprimentoMaximo = null;
+var counter = 0;
+function iniciarEspessura(tamanho)  { 	
+	comprimentoMaximo = tamanho;
 	chartEspessura = new Highcharts.Chart({
         chart: {
             renderTo: 'espessura',
@@ -23,7 +25,7 @@ function iniciarEspessura()  {
         },
         xAxis: { 
         	min: 0,
-        	max: 1000
+        	max: tamanho
         },
         yAxis: {
         	 min: 0,
@@ -76,6 +78,25 @@ function alterarLinha(){
 	plotBand.render();
 }
 
+function carregarLinhasEspessura(ensaio){ 
+	
+	ensaio.dadosEspessura.forEach(function(dado) { 
+		if (dado.valorY !=null){
+		     chartEspessura.series[0].addPoint(dado.valorY, true, false);
+		}
+	});
+}
+
+function resetDataEspessura(){ 
+    var seriesLength = chartEspessura.series[0].points.length;
+    for(var i = seriesLength -1; i > -1; i--) {
+    	chartEspessura.series[0].points[0].remove(true,true); 
+    }
+
+    chartEspessura.series[0].addPoint(100, true, false);
+    chartEspessura.xAxis[0].render(); 
+}
+
 function requestDataEspessura() {
  
     var series = chartEspessura.series[0];
@@ -83,10 +104,33 @@ function requestDataEspessura() {
                                           
      var ponto = getRandomInt(0, 100); 
      chartEspessura.series[0].addPoint(ponto, true, shift);
-     
 
-     loopEspessura = setTimeout(requestDataEspessura, 1000);   
+     counter ++;
+     if (counter == comprimentoMaximo){
+    	 pararLoopEspessura();
+     } else {
+         loopEspessura = setTimeout(requestDataEspessura, 1000);   
+     }
+
 }
 function pararLoopEspessura(){
 	clearTimeout(loopEspessura);
+}
+
+
+function capturaLeituraEspessura(ensaio){ 
+	var tamanho = chartEspessura.series[0].points.length;
+	if (ensaio.dadosEnsaios == null) {
+		ensaio.dadosEnsaios =[];
+	}
+	for(i=0; i<tamanho; i++){
+		var dadosEnsaios = {valorX : i, valorY : chartEspessura.series[0].points[i].y, tipo: 'ESPESSURA' };
+	 
+		ensaio.dadosEnsaios.push(dadosEnsaios);
+	} 
+	return ensaio;
+}
+
+function getSvgEspessura(){
+	return chartEspessura.getSVG();
 }

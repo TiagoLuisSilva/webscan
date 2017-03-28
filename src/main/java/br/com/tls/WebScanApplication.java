@@ -35,5 +35,4 @@ public class WebScanApplication  extends SpringBootServletInitializer implements
         mappings.add("html", "text/html;charset=utf-8");
         factory.setMimeMappings(mappings );
 	}
-	
 }

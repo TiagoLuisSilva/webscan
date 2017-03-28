@@ -64,18 +64,39 @@
 							<legend class="scheduler-border">Ensaios</legend>
 							<div style="padding-left: 5px;">
 								<div class="row"> 
-									<div class="checkbox">
-										<label><input type="checkbox"  id="espesura" th:field="*{espesura}"  ></input>Medi&ccedil&atildeo Espessura</label>
+									<div class="col-sm-5">
+										<div class="checkbox">
+										<br/>
+											<label><input type="checkbox"  id="espesura" th:field="*{espesura}"  ></input>Medi&ccedil&atildeo Espessura</label>
+										</div>
+									</div>	
+									<div class="col-sm-5">
+											<label for="margemEspessura">Margem Espessura</label> 
+											<input type="text" size="1" class="form-control numeric" id="margemEspesura" th:field="*{margemEspesura}"  maxlength="3"    ></input>
 									</div>
 								</div>
 								<div class="row"> 
-									<div class="checkbox">
-										<label><input type="checkbox" id="longitudinal"  th:field="*{longitudinal}"  ></input>Longitudinal</label>
+									<div class="col-sm-5">
+										<div class="checkbox">
+											<br/> 
+											<label><input type="checkbox" id="longitudinal"  th:field="*{longitudinal}"  ></input>Longitudinal</label>
+										</div>
+									</div>
+									<div class="col-sm-5">
+											<label for="margemLongitudinal">Margem Longitudinal</label> 
+											<input type="text" size="1" class="form-control numeric" id="margemLongitudinal" th:field="*{margemLongitudinal}"  maxlength="3"    ></input>
 									</div>
 								</div>
 								<div class="row"> 
-									<div class="checkbox">
-										<label><input type="checkbox" id="transversal" th:field="*{transversal}"></input>Transversal</label>
+									<div class="col-sm-5">
+										<div class="checkbox">
+										<br/> 	
+											<label><input type="checkbox" id="transversal" th:field="*{transversal}"></input>Transversal</label>
+										</div>
+									</div>
+									<div class="col-sm-5">
+											<label for="margemTransversal">Margem Longitudinal</label> 
+											<input type="text" size="1" class="form-control numeric" id="margemTransversal" th:field="*{margemTransversal}"  maxlength="3"    ></input>
 									</div>
 								</div> 
 							</div>

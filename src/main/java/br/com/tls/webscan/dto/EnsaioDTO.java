@@ -1,13 +1,17 @@
 package br.com.tls.webscan.dto;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import br.com.tls.webscan.entity.DadosEnsaioVO;
 import br.com.tls.webscan.entity.EnsaioVO;
+import br.com.tls.webscan.entity.TipoEnsaioEnum;
 
 public class EnsaioDTO {
  
@@ -29,10 +33,17 @@ public class EnsaioDTO {
 	private boolean espesura; 
 	private boolean longitudinal; 
 	private boolean transversal;  
+	private Long margemEspesura;
+	private Long margemLongitudinal;
+	private Long margemTransversal; 
 
 	private boolean height150;
 	private boolean height225;
 	private boolean height450;  
+
+	private List<DadosEnsaioDTO> dadosEspessura;
+	private List<DadosEnsaioDTO> dadosLongitudinal;
+	private List<DadosEnsaioDTO> dadosTransversal;
 	
 	public EnsaioDTO(){
 	}
@@ -50,6 +61,25 @@ public class EnsaioDTO {
 			this.espesura = ensaio.getEspesura();
 			this.longitudinal = ensaio.getLongitudinal();
 			this.transversal = ensaio.getTransversal(); 
+			this.margemEspesura = ensaio.getMargemEspesura();
+			this.margemLongitudinal = ensaio.getMargemLongitudinal();
+			this.margemTransversal = ensaio.getMargemTransversal();
+			if (ensaio.getDadosEnsaio() != null && !ensaio.getDadosEnsaio().isEmpty()){
+				this.dadosEspessura  = new ArrayList<DadosEnsaioDTO>();
+				this.dadosLongitudinal = new ArrayList<DadosEnsaioDTO>();
+				this.dadosTransversal  = new ArrayList<DadosEnsaioDTO>();
+				for (DadosEnsaioVO dado :ensaio.getDadosEnsaio() ){
+					DadosEnsaioDTO dadoDto = new DadosEnsaioDTO(dado);
+					if (TipoEnsaioEnum.ESPESSURA.equals(dado.getTipo())){
+						this.dadosEspessura.add(dadoDto);						
+					} else if (TipoEnsaioEnum.TRANSVERSAL.equals(dado.getTipo())){
+						this.dadosTransversal.add(dadoDto);
+					}else if (TipoEnsaioEnum.LONGITUDINAL.equals(dado.getTipo())){
+						this.dadosLongitudinal.add(dadoDto);						
+					}
+				}
+			}
+				
 			calculaTamanho();
 		}
 	}
@@ -67,8 +97,25 @@ public class EnsaioDTO {
 		ensaio.setEspesura(espesura);
 		ensaio.setLongitudinal(longitudinal);
 		ensaio.setTransversal(transversal); 
-		
-		
+		ensaio.setMargemEspesura(margemEspesura);
+		ensaio.setMargemLongitudinal(margemLongitudinal);
+		ensaio.setMargemTransversal(margemTransversal);
+		ensaio.setDadosEnsaio(new ArrayList<DadosEnsaioVO>());
+		if (this.dadosEspessura !=null && !this.dadosEspessura.isEmpty()){ 
+			for (DadosEnsaioDTO dadosDto : this.dadosEspessura){
+				ensaio.getDadosEnsaio().add(dadosDto.toDadosEnsaio());
+			}
+		}
+		if (this.dadosLongitudinal !=null && !this.dadosLongitudinal.isEmpty()){ 
+			for (DadosEnsaioDTO dadosDto : this.dadosLongitudinal){
+				ensaio.getDadosEnsaio().add(dadosDto.toDadosEnsaio());
+			}
+		}
+		if (this.dadosTransversal !=null && !this.dadosTransversal.isEmpty()){ 
+			for (DadosEnsaioDTO dadosDto : this.dadosTransversal){
+				ensaio.getDadosEnsaio().add(dadosDto.toDadosEnsaio());
+			}
+		}
 		return ensaio;
 	}
 	public Long getId() {
@@ -198,6 +245,30 @@ public class EnsaioDTO {
 		this.transversal = transversal;
 	}
 
+public Long getMargemEspesura() {
+		return margemEspesura;
+	}
+
+	public void setMargemEspesura(Long margemEspesura) {
+		this.margemEspesura = margemEspesura;
+	}
+
+	public Long getMargemLongitudinal() {
+		return margemLongitudinal;
+	}
+
+	public void setMargemLongitudinal(Long margemLongitudinal) {
+		this.margemLongitudinal = margemLongitudinal;
+	}
+
+	public Long getMargemTransversal() {
+		return margemTransversal;
+	}
+
+	public void setMargemTransversal(Long margemTransversal) {
+		this.margemTransversal = margemTransversal;
+	}
+
 private void calculaTamanho(){
 		if ((espesura && longitudinal && !transversal) || 
 			(espesura && transversal  && !longitudinal)  || 
@@ -218,6 +289,40 @@ private void calculaTamanho(){
 		}
 	}
 
+public List<DadosEnsaioDTO> getDadosEspessura() {
+	if (dadosEspessura == null){
+		dadosEspessura = new ArrayList<DadosEnsaioDTO>();
+	}
+	return dadosEspessura;
+}
+
+public void setDadosEspessura(List<DadosEnsaioDTO> dadosEspessura) {
+	this.dadosEspessura = dadosEspessura;
+}
+
+public List<DadosEnsaioDTO> getDadosLongitudinal() {
+	if (dadosLongitudinal == null){
+		dadosLongitudinal = new ArrayList<DadosEnsaioDTO>();
+	}
+	return dadosLongitudinal;
+}
+
+public void setDadosLongitudinal(List<DadosEnsaioDTO> dadosLongitudinal) {
+	this.dadosLongitudinal = dadosLongitudinal;
+}
+
+public List<DadosEnsaioDTO> getDadosTransversal() {
+	if (dadosTransversal == null){
+		dadosTransversal = new ArrayList<DadosEnsaioDTO>();
+	}
+	return dadosTransversal;
+}
+
+public void setDadosTransversal(List<DadosEnsaioDTO> dadosTransversal) {
+	this.dadosTransversal = dadosTransversal;
+}
+
+ 
  
 	
 	

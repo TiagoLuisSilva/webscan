@@ -1,7 +1,10 @@
 
 var chartTransversal = null;
 var loopTransversal = null;
-function iniciarTransversal()  { 	
+var comprimentoMaximo = null;
+var counter = 0;
+function iniciarTransversal(tamanho)  { 	
+	comprimentoMaximo = tamanho;
 
 	chartTransversal = new Highcharts.Chart({ 
         chart: {
@@ -23,7 +26,7 @@ function iniciarTransversal()  {
         },
         xAxis: {
        	 min: 0,
-         max: 1000 
+         max: tamanho 
         },
         yAxis: {
         	 min: -100,
@@ -32,10 +35,11 @@ function iniciarTransversal()  {
                 text: 'Transversal'
             },
             plotLines: [{
-                value: 0,
-                width: 1,
-                color: '#808080'
-            }]
+                color: 'red', // Color value
+                dashStyle: 'Solid', // Style of the plot line. Default to solid
+                value: 0, // Value of where the line will appear
+                width: 2 // Width of the line    
+              }]
         }, 
         exporting: {
             buttons: {
@@ -68,6 +72,24 @@ function iniciarTransversal()  {
 }
 
 
+function alterarLinhaTransversal(){
+	var valor = $("#rangeTransversal").val();
+	var plotBand = chartTransversal.yAxis[0].plotLinesAndBands[0];
+	plotBand.options.value  = valor;
+	plotBand.render();
+}
+
+function carregarLinhasTransversal(ensaio){ 
+	
+	ensaio.dadosTransversal.forEach(function(dado) { 
+		if (dado.valorY !=null){
+			
+			chartTransversal.series[0].addPoint(dado.valorY, true, false);
+		}
+	});
+}
+
+
 function requestDataTransversal() {
  
     var series = chartTransversal.series[0];
@@ -75,9 +97,31 @@ function requestDataTransversal() {
                                           
      var ponto = getRandomInt(-100, 100); 
      chartTransversal.series[0].addPoint(ponto, true, shift);
-
-     loopTransversal = setTimeout(requestDataTransversal, 1000);   
+     counter ++;
+     if (counter == comprimentoMaximo){
+    	 pararLoopTransversal();
+     } else {
+    	 loopTransversal = setTimeout(requestDataTransversal, 1000);   
+     }
 }
 function pararLoopTransversal(){
 	clearTimeout(loopTransversal);
+}
+
+function capturaLeituraTransversal(ensaio){ 
+	var tamanho = chartTransversal.series[0].points.length;
+
+	if (typeof ensaio.dadosEnsaios[0] == 'undefined') {
+		ensaio.dadosEnsaios =[];
+	}
+	for(i=0; i<tamanho; i++){
+		var dadosEnsaios = {valorX : i, valorY : chartTransversal.series[0].points[i].y, tipo: 'TRANSVERSAL' };
+	 
+		ensaio.dadosEnsaios.push(dadosEnsaios);
+	} 
+	return ensaio;
+}
+ 
+function getSvgTransversal(){
+	return chartTransversal.getSVG();
 }

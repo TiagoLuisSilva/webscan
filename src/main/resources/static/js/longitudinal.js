@@ -1,7 +1,10 @@
 
 var chartLongitudinal = null;
 var loopLongitudinal = null;
-function iniciarLongitudinal()  { 	
+var comprimentoMaximo = null;
+var counter = 0;
+function iniciarLongitudinal(tamanho)  { 	
+	comprimentoMaximo = tamanho;
 
 	chartLongitudinal = new Highcharts.Chart({  
         chart: {
@@ -23,7 +26,7 @@ function iniciarLongitudinal()  {
         },
         xAxis: {
         	min: 0,
-        	max: 1000
+        	max: tamanho
         },
         yAxis: {
         	 min: -100,
@@ -31,7 +34,13 @@ function iniciarLongitudinal()  {
              max: 100,
             title: {
                 text: 'Longitudinal'
-            }
+            },
+            plotLines: [{
+                color: 'red', // Color value
+                dashStyle: 'Solid', // Style of the plot line. Default to solid
+                value: 0, // Value of where the line will appear
+                width: 2 // Width of the line    
+              }]
         }, 
         exporting: {
             buttons: {
@@ -63,6 +72,22 @@ function iniciarLongitudinal()  {
     });
 }
 
+function alterarLinhaLongitudinal(){
+	var valor = $("#rangeLongitudinal").val();
+	var plotBand = chartLongitudinal.yAxis[0].plotLinesAndBands[0];
+	plotBand.options.value  = valor;
+	plotBand.render();
+}
+
+function carregarLinhasLongitudinal(ensaio){ 
+	
+	ensaio.dadosLongitudinal.forEach(function(dado) { 
+		if (dado.valorY !=null){
+			chartLongitudinal.series[0].addPoint(dado.valorY, true, false);
+		}
+	});
+}
+
 
 function requestDataLongitudinal() {
  
@@ -71,9 +96,34 @@ function requestDataLongitudinal() {
                                           
      var ponto = getRandomInt(-100, 100); 
      chartLongitudinal.series[0].addPoint(ponto, true, shift);
-     
-     loopLongitudinal = setTimeout(requestDataLongitudinal, 1000);   
+      
+     counter ++;
+     if (counter == comprimentoMaximo){
+    	 pararLoopLongitudinal();
+     } else {
+         loopLongitudinal = setTimeout(requestDataLongitudinal, 1000);   
+     }
 }
 function pararLoopLongitudinal(){
 	clearTimeout(loopLongitudinal);
+}
+
+
+function capturaLeituraLongitudinal(ensaio){ 
+	var tamanho = chartLongitudinal.series[0].points.length;
+
+	if (typeof ensaio.dadosEnsaios[0] == 'undefined') {
+		ensaio.dadosEnsaios =[];
+	}
+	for(i=0; i<tamanho; i++){
+		var dadosEnsaios = {valorX : i, valorY : chartLongitudinal.series[0].points[i].y, tipo: 'LONGITUDINAL' };
+	 
+		ensaio.dadosEnsaios.push(dadosEnsaios);
+	} 
+	return ensaio;
+}
+
+
+function getSvgLongitudinal(){
+	return chartLongitudinal.getSVG();
 }

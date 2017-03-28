@@ -145,7 +145,7 @@ body.hold-transition .main-header .logo {
   min-height: 250px;
   padding: 15px;
   margin-right: auto;
-  margin-left: auto;
+  margin-left: 10px;
   padding-left: 15px;
   padding-right: 15px;
 }
