@@ -77,31 +77,31 @@ public class EnsaioControler {
 	@RequestMapping(value="/ensaio/download",  method=RequestMethod.POST)
 	public @ResponseBody String    gerarRelatorio(  @RequestBody  RelatorioEnsaioDTO ensaioRelatorio) throws Exception {
 		//String path = RelatorioEnsaioDTO.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-		String path = "\\var\\";
+		String path = "/var/";
 		
 		try {
-		 	File svgEspessura=new File(path+"relatorio	espessura.svg");
-		 	File svgTransversal=new File(path+"relatorio\\transversal.svg");
-		 	File svgLongitudinal=new File(path+"relatorio\\longitudinal.svg");
+		 	File svgEspessura=new File(path+"espessura.svg");
+		 	File svgTransversal=new File(path+"transversal.svg");
+		 	File svgLongitudinal=new File(path+"longitudinal.svg");
 		 	
 		 	String headerSvg = "<?xml version=\"1.0\" standalone=\"no\"?><!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\" \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">";
 		 	if (StringUtils.isNotBlank(ensaioRelatorio.getSvgEspessura())){
 		 		BufferedWriter writerEspessura = new BufferedWriter(new FileWriter(svgEspessura));
 		 		writerEspessura.write(headerSvg+ensaioRelatorio.getSvgEspessura());
 		 		writerEspessura.close();
-		     	ensaioRelatorio.setUrlEspessura(Uteis.converterSvgToJpg(path+"relatorio\\espessura"));
+		     	ensaioRelatorio.setUrlEspessura(Uteis.converterSvgToJpg(path+"espessura"));
 		 	}
 		 	if (StringUtils.isNotBlank(ensaioRelatorio.getSvgLongitudinal())){
 		 		BufferedWriter writerLongitudinal = new BufferedWriter(new FileWriter(svgLongitudinal));
 		 		writerLongitudinal.write(headerSvg+ensaioRelatorio.getSvgLongitudinal());
 		 		writerLongitudinal.close();
-		     	ensaioRelatorio.setUrlLongitudinal(Uteis.converterSvgToJpg(path+"relatorio\\longitudinal"));
+		     	ensaioRelatorio.setUrlLongitudinal(Uteis.converterSvgToJpg(path+"longitudinal"));
 		 	}
 		 	if (StringUtils.isNotBlank(ensaioRelatorio.getSvgTransversal())){
 		 		BufferedWriter writerTransversal = new BufferedWriter(new FileWriter(svgTransversal));
 		 		writerTransversal.write(headerSvg+ensaioRelatorio.getSvgTransversal());
 		 		writerTransversal.close();
-		     	ensaioRelatorio.setUrlTransversal(Uteis.converterSvgToJpg(path+"relatorio/transversal"));
+		     	ensaioRelatorio.setUrlTransversal(Uteis.converterSvgToJpg(path+"transversal"));
 		 	}
 		} catch(Exception e) {
 		    e.printStackTrace();
