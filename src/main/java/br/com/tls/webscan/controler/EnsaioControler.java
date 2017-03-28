@@ -103,20 +103,21 @@ public class EnsaioControler {
 		 		writerTransversal.close();
 		     	ensaioRelatorio.setUrlTransversal(Uteis.converterSvgToJpg(path+"transversal"));
 		 	}
+
+		    byte[] arquivo = ensaioComponent.gerarRelatorio(ensaioRelatorio);
+		    FileOutputStream fileOuputStream = null;
+		    try { 
+		        fileOuputStream = new FileOutputStream(path+"relatorio\\Relatorio.pdf"); 
+		        fileOuputStream.write(arquivo);
+		     } finally {
+		        fileOuputStream.close();
+		     } 
 		} catch(Exception e) {
 		    e.printStackTrace();
 		}
  
         
         
-	    byte[] arquivo = ensaioComponent.gerarRelatorio(ensaioRelatorio);
-	    FileOutputStream fileOuputStream = null;
-	    try { 
-	        fileOuputStream = new FileOutputStream(path+"relatorio\\Relatorio.pdf"); 
-	        fileOuputStream.write(arquivo);
-	     } finally {
-	        fileOuputStream.close();
-	     } 
 	//	return Uteis.abrirPdf(arquivo, "Ensaio.pdf"); 
 		 return "";
 	}
