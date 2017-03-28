@@ -80,7 +80,7 @@ public class EnsaioControler {
 		String path = "\\var\\";
 		
 		try {
-		 	File svgEspessura=new File(path+"relatorio\\espessura.svg");
+		 	File svgEspessura=new File(path+"relatorio	espessura.svg");
 		 	File svgTransversal=new File(path+"relatorio\\transversal.svg");
 		 	File svgLongitudinal=new File(path+"relatorio\\longitudinal.svg");
 		 	
@@ -89,13 +89,13 @@ public class EnsaioControler {
 		 		BufferedWriter writerEspessura = new BufferedWriter(new FileWriter(svgEspessura));
 		 		writerEspessura.write(headerSvg+ensaioRelatorio.getSvgEspessura());
 		 		writerEspessura.close();
-		     	ensaioRelatorio.setUrlEspessura(Uteis.converterSvgToJpg(path+"relatorio/espessura"));
+		     	ensaioRelatorio.setUrlEspessura(Uteis.converterSvgToJpg(path+"relatorio\\espessura"));
 		 	}
 		 	if (StringUtils.isNotBlank(ensaioRelatorio.getSvgLongitudinal())){
 		 		BufferedWriter writerLongitudinal = new BufferedWriter(new FileWriter(svgLongitudinal));
 		 		writerLongitudinal.write(headerSvg+ensaioRelatorio.getSvgLongitudinal());
 		 		writerLongitudinal.close();
-		     	ensaioRelatorio.setUrlLongitudinal(Uteis.converterSvgToJpg(path+"relatorio/longitudinal"));
+		     	ensaioRelatorio.setUrlLongitudinal(Uteis.converterSvgToJpg(path+"relatorio\\longitudinal"));
 		 	}
 		 	if (StringUtils.isNotBlank(ensaioRelatorio.getSvgTransversal())){
 		 		BufferedWriter writerTransversal = new BufferedWriter(new FileWriter(svgTransversal));
